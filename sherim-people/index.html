@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>sherim people — медиа о людях, бизнесе и креаторах</title>
+<meta name="description" content="sherim people — медиа о предпринимателях, креаторах и актуальных новостях Казахстана." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0F0D0C;
+  --bg-2: #181614;
+  --bg-3: #1E1B19;
+  --ink: #E8E4DF;
+  --ink-2: #A8A09A;
+  --ink-3: #635C57;
+  --line: rgba(232,228,223,0.09);
+  --accent: rgba(206,206,206,0.55);
+  --accent-bright: #CECECE;
+}
+
+html { scroll-behavior: smooth; background: var(--bg); }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Comfortaa', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+::selection { background: rgba(206,206,206,0.45); color: #fff; }
+
+/* ===== TOP BAR (language / social) ===== */
+.sp-topbar {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-family: 'Comfortaa', sans-serif;
+}
+.sp-topbar-left { display: flex; gap: 20px; align-items: center; }
+.sp-topbar-left a {
+  color: var(--ink-3);
+  transition: color 0.2s;
+}
+.sp-topbar-left a:hover { color: var(--ink-2); }
+.sp-topbar-right { display: flex; gap: 16px; align-items: center; }
+.sp-lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-3);
+  transition: color 0.2s; padding: 0;
+}
+.sp-lang-btn.active { color: var(--ink); }
+.sp-lang-btn:hover:not(.active) { color: var(--ink-2); }
+.sp-lang-sep { color: var(--ink-3); }
+
+/* ===== HEADER (BBC-style: logo centered) ===== */
+.sp-header {
+  padding: 28px 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.sp-header-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 22px;
+}
+.sp-back {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+.sp-back:hover { color: var(--ink-2); }
+.sp-header-logo {
+  text-align: center;
+  flex: 1;
+}
+.sp-logo-name {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 52px);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1;
+}
+.sp-logo-name span { color: rgba(206,206,206,0.45); }
+.sp-logo-sub {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 6px;
+}
+
+/* ===== NAV BAR (categories) ===== */
+.sp-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sp-nav::-webkit-scrollbar { display: none; }
+.sp-nav a {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding: 12px 18px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.sp-nav a:hover { color: var(--ink); }
+.sp-nav a.active { color: var(--ink); border-bottom-color: rgba(206,206,206,0.45); }
+
+/* ===== HERO (big top story) ===== */
+.sp-hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+  max-width: 100%;
+}
+.sp-hero-main {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 480px;
+  background: var(--bg-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.sp-hero-main:hover .sp-hero-img { transform: scale(1.03); }
+.sp-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+  opacity: 0.55;
+}
+.sp-hero-img-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1512 0%, #2a1f1a 50%, #0f0d0c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  opacity: 0.15;
+}
+.sp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,13,12,0.95) 0%, rgba(15,13,12,0.4) 50%, transparent 100%);
+}
+.sp-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 36px 40px;
+}
+.sp-story-cat {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(206,206,206,0.45);
+  padding: 4px 10px;
+  margin-bottom: 14px;
+  font-family: 'Comfortaa', sans-serif;
+}
+.sp-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3.5vw, 44px);
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.sp-hero-excerpt {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 560px;
+}
+.sp-hero-meta {
+  margin-top: 18px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  font-family: 'Comfortaa', sans-serif;
+}
+
+/* Side stories */
+.sp-hero-side {
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+.sp-side-story {
+  padding: 24px 24px;
+  border-bottom: 1px solid var(--line);
+  flex: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sp-side-story:last-child { border-bottom: none; }
+.sp-side-story:hover { background: rgba(232,228,223,0.03); }
+.sp-side-cat {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(206,206,206,0.45);
+  font-family: 'Comfortaa', sans-serif;
+  margin-bottom: 8px;
+}
+.sp-side-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.sp-side-meta {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  font-family: 'Comfortaa', sans-serif;
+}
+
+/* ===== MAIN CONTENT AREA ===== */
+.sp-content {
+  padding: 0 40px;
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Section label */
+.sp-section-label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-family: 'Comfortaa', sans-serif;
+  padding: 28px 0 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sp-section-label::before {
+  content: "";
+  width: 16px; height: 2px;
+  background: rgba(206,206,206,0.45);
+  flex-shrink: 0;
+}
+
+/* Latest articles grid */
+.sp-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+.sp-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.sp-card:hover { opacity: 0.82; }
+.sp-card-cover {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--bg-3);
+  overflow: hidden;
+  margin-bottom: 14px;
+  position: relative;
+}
+.sp-card-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s;
+}
+.sp-card:hover .sp-card-cover img { transform: scale(1.04); }
+.sp-card-cover-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(206,206,206,0.45);
+  opacity: 0.18;
+  font-size: 22px;
+}
+.sp-card-cat {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(206,206,206,0.45);
+  font-family: 'Comfortaa', sans-serif;
+  margin-bottom: 7px;
+}
+.sp-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.sp-card-meta {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  font-family: 'Comfortaa', sans-serif;
+  margin-top: auto;
+}
+
+/* ===== TWO-COLUMN: main + popular ===== */
+.sp-two-col {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Feature story (big card) */
+.sp-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  cursor: pointer;
+  padding: 0 0 28px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28px;
+}
+.sp-feature:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.sp-feature:hover .sp-feature-title { color: var(--ink-2); }
+.sp-feature-cover {
+  aspect-ratio: 4/3;
+  background: var(--bg-3);
+  overflow: hidden;
+}
+.sp-feature-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s; }
+.sp-feature:hover .sp-feature-cover img { transform: scale(1.04); }
+.sp-feature-cover-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(206,206,206,0.45); opacity: 0.15; font-size: 28px;
+}
+.sp-feature-body { display: flex; flex-direction: column; justify-content: center; }
+.sp-feature-cat {
+  font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(206,206,206,0.45);
+  font-family: 'Comfortaa', sans-serif; margin-bottom: 10px;
+}
+.sp-feature-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700; font-size: 20px; line-height: 1.28;
+  color: var(--ink); letter-spacing: -0.01em; margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.sp-feature-excerpt { font-size: 13px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; }
+.sp-feature-meta { font-size: 10px; letter-spacing: 0.1em; color: var(--ink-3); font-family: 'Comfortaa', sans-serif; }
+
+/* Popular sidebar */
+.sp-popular { }
+.sp-popular-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  align-items: flex-start;
+}
+.sp-popular-item:last-child { border-bottom: none; }
+.sp-popular-item:hover { opacity: 0.75; }
+.sp-popular-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(206,206,206,0.45);
+  opacity: 0.25;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 30px;
+}
+.sp-popular-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
+  font-weight: 700;
+}
+.sp-popular-meta {
+  font-size: 10px; letter-spacing: 0.1em;
+  color: var(--ink-3); font-family: 'Comfortaa', sans-serif;
+  margin-top: 6px;
+}
+
+/* ===== CTA SUBSCRIBE ===== */
+.sp-subscribe {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 48px 40px;
+  text-align: center;
+  margin: 40px 0;
+}
+.sp-subscribe-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--ink); margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.sp-subscribe-sub {
+  font-size: 13px; color: var(--ink-2); margin-bottom: 24px; line-height: 1.6;
+}
+.sp-subscribe-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.sp-sub-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #fff;
+  background: rgba(206,206,206,0.45);
+  transition: opacity 0.2s;
+}
+.sp-sub-btn:hover { opacity: 0.85; }
+.sp-sub-btn-ghost {
+  background: none;
+  border: 1px solid rgba(232,228,223,0.2);
+  color: var(--ink-2);
+}
+.sp-sub-btn-ghost:hover { border-color: rgba(232,228,223,0.5); color: var(--ink); opacity: 1; }
+
+/* ===== FOOTER ===== */
+.sp-footer {
+  border-top: 1px solid var(--line);
+  padding: 40px 40px 32px;
+}
+.sp-footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.sp-footer-brand .sp-logo-name { font-size: 20px; }
+.sp-footer-brand .sp-logo-sub { margin-top: 4px; font-size: 9px; }
+.sp-footer-about { font-size: 12px; line-height: 1.7; color: var(--ink-2); max-width: 360px; }
+.sp-footer-nav { display: flex; flex-direction: column; gap: 8px; }
+.sp-footer-nav a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); transition: color 0.2s; }
+.sp-footer-nav a:hover { color: var(--ink-2); }
+.sp-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  font-family: 'Comfortaa', sans-serif;
+}
+.sp-footer-bottom a { color: var(--ink-3); transition: color 0.2s; }
+.sp-footer-bottom a:hover { color: var(--ink-2); }
+
+/* ===== PRELOADER — identical to sherim media pages ===== */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #1E1A19;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+#preloader.done {
+  opacity: 0;
+  visibility: hidden;
+}
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.preloader-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.preloader-mark {
+  height: 36px;
+  width: auto;
+  display: block;
+  opacity: 1;
+}
+.preloader-bar {
+  width: 230px;
+  height: 5px;
+  background: #1E1A19;
+  border: 1px solid #CECECE;
+  position: relative;
+  overflow: hidden;
+}
+.preloader-bar::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 46%;
+  background: #CECECE;
+  transform: translateX(-120%);
+  animation: loaderFill 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+@keyframes loaderFill {
+  0%   { transform: translateX(-120%); opacity: 0.75; }
+  18%  { opacity: 1; }
+  100% { transform: translateX(240%); opacity: 0.75; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .sp-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .sp-hero { grid-template-columns: 1fr 300px; }
+}
+@media (max-width: 860px) {
+  .sp-topbar { padding: 9px 20px; }
+  .sp-header { padding: 20px 20px 0; }
+  .sp-content { padding: 0 20px; }
+  .sp-hero { grid-template-columns: 1fr; }
+  .sp-hero-main { min-height: 360px; }
+  .sp-hero-side { border-left: none; border-top: 1px solid var(--line); flex-direction: row; overflow-x: auto; }
+  .sp-side-story { min-width: 220px; border-bottom: none; border-right: 1px solid var(--line); }
+  .sp-side-story:last-child { border-right: none; }
+  .sp-grid-4 { grid-template-columns: 1fr 1fr; }
+  .sp-two-col { grid-template-columns: 1fr; gap: 28px; }
+  .sp-feature { grid-template-columns: 1fr; }
+  .sp-footer { padding: 32px 20px; }
+  .sp-subscribe { padding: 36px 20px; }
+  .sp-nav a { padding: 12px 12px; font-size: 10px; }
+}
+@media (max-width: 520px) {
+  .sp-grid-4 { grid-template-columns: 1fr; }
+  .sp-topbar-left { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- PRELOADER — same as sherim media pages -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">
+      <img src="../assets/logo-ring-grey.png" alt="sherim" class="preloader-mark" />
+    </div>
+    <div class="preloader-bar"></div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="sp-topbar">
+  <div class="sp-topbar-left">
+    <a href="../index.html" data-ru="← sherim media" data-en="← sherim media">← sherim media</a>
+    <span data-ru="Казахстан · 2026" data-en="Kazakhstan · 2026">Казахстан · 2026</span>
+  </div>
+  <div class="sp-topbar-right">
+    <button class="sp-lang-btn active" data-lang="ru">RU</button>
+    <span class="sp-lang-sep">/</span>
+    <button class="sp-lang-btn" data-lang="en">EN</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="sp-header">
+  <div class="sp-header-top">
+    <a href="../index.html" class="sp-back">
+      <span>←</span>
+      <span data-ru="На главную" data-en="Home">На главную</span>
+    </a>
+    <div class="sp-header-logo">
+      <div class="sp-logo-name">sherim<span>.</span>people</div>
+      <div class="sp-logo-sub" data-ru="медиа о людях, бизнесе и креаторах" data-en="media about people, business and creators">медиа о людях, бизнесе и креаторах</div>
+    </div>
+    <div style="width:120px;"></div><!-- spacer for centering -->
+  </div>
+
+  <!-- NAV CATEGORIES -->
+  <nav class="sp-nav">
+    <a href="#" class="active" data-ru="Главная" data-en="Home">Главная</a>
+    <a href="#" data-ru="Интервью" data-en="Interviews">Интервью</a>
+    <a href="#" data-ru="Кейсы" data-en="Cases">Кейсы</a>
+    <a href="#" data-ru="Новости" data-en="News">Новости</a>
+    <a href="#" data-ru="Разборы" data-en="Analysis">Разборы</a>
+    <a href="#" data-ru="Колонки" data-en="Columns">Колонки</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="sp-hero">
+  <!-- Main big story -->
+  <a href="#" class="sp-hero-main">
+    <div class="sp-hero-img-placeholder">◉</div>
+    <div class="sp-hero-overlay"></div>
+    <div class="sp-hero-content">
+      <div class="sp-story-cat" data-ru="Интервью" data-en="Interview">Интервью</div>
+      <h1 class="sp-hero-title" data-ru="«Начинал с нуля, сейчас оборот — 2 млрд тенге»: история основателя Chocofood" data-en="'Started from scratch, now turnover 2B tenge': the Chocofood founder story">
+        «Начинал с нуля, сейчас оборот — 2 млрд тенге»: история основателя Chocofood
+      </h1>
+      <p class="sp-hero-excerpt" data-ru="Разговор с предпринимателем о том, как он строил один из первых food-delivery сервисов Казахстана, трижды был на грани закрытия и почему не продал компанию Google." data-en="A conversation on building Kazakhstan's first food-delivery service, three near-closures, and why he didn't sell to Google.">
+        Разговор с предпринимателем о том, как он строил один из первых food-delivery сервисов Казахстана, трижды был на грани закрытия и почему не продал компанию Google.
+      </p>
+      <div class="sp-hero-meta" data-ru="3 июня 2026 · 10 мин чтения" data-en="June 3, 2026 · 10 min read">3 июня 2026 · 10 мин чтения</div>
+    </div>
+  </a>
+
+  <!-- Side stories -->
+  <div class="sp-hero-side">
+    <a href="#" class="sp-side-story">
+      <div class="sp-side-cat" data-ru="Кейс" data-en="Case">Кейс</div>
+      <div class="sp-side-title" data-ru="Как казахстанский бьюти-бренд вырос с 3к до 180к подписчиков за 4 месяца" data-en="How a Kazakh beauty brand grew from 3K to 180K followers in 4 months">Как казахстанский бьюти-бренд вырос с 3к до 180к подписчиков за 4 месяца</div>
+      <div class="sp-side-meta" data-ru="29 мая 2026 · 7 мин" data-en="May 29, 2026 · 7 min">29 мая 2026 · 7 мин</div>
+    </a>
+    <a href="#" class="sp-side-story">
+      <div class="sp-side-cat" data-ru="Разбор" data-en="Analysis">Разбор</div>
+      <div class="sp-side-title" data-ru="Сколько реально зарабатывают казахстанские блогеры в 2026 году" data-en="How much Kazakh bloggers really earn in 2026">Сколько реально зарабатывают казахстанские блогеры в 2026 году</div>
+      <div class="sp-side-meta" data-ru="24 мая 2026 · 5 мин" data-en="May 24, 2026 · 5 min">24 мая 2026 · 5 мин</div>
+    </a>
+    <a href="#" class="sp-side-story">
+      <div class="sp-side-cat" data-ru="Колонка" data-en="Column">Колонка</div>
+      <div class="sp-side-title" data-ru="Почему казахстанские бренды боятся работать с блогерами напрямую" data-en="Why Kazakh brands are afraid to work with bloggers directly">Почему казахстанские бренды боятся работать с блогерами напрямую</div>
+      <div class="sp-side-meta" data-ru="19 мая 2026 · 4 мин" data-en="May 19, 2026 · 4 min">19 мая 2026 · 4 мин</div>
+    </a>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="sp-content">
+
+  <!-- Latest -->
+  <div class="sp-section-label" data-ru="Последние материалы" data-en="Latest stories">Последние материалы</div>
+  <div class="sp-grid-4">
+    <a href="#" class="sp-card">
+      <div class="sp-card-cover"><div class="sp-card-cover-ph">◉</div></div>
+      <div class="sp-card-cat" data-ru="Новости" data-en="News">Новости</div>
+      <div class="sp-card-title" data-ru="Instagram снова меняет алгоритм: что важно знать брендам прямо сейчас" data-en="Instagram changes its algorithm again: what brands need to know right now">Instagram снова меняет алгоритм: что важно знать брендам прямо сейчас</div>
+      <div class="sp-card-meta" data-ru="2 июня 2026 · 4 мин" data-en="June 2, 2026 · 4 min">2 июня 2026 · 4 мин</div>
+    </a>
+    <a href="#" class="sp-card">
+      <div class="sp-card-cover"><div class="sp-card-cover-ph">◉</div></div>
+      <div class="sp-card-cat" data-ru="Интервью" data-en="Interview">Интервью</div>
+      <div class="sp-card-title" data-ru="«Мне было 19, когда я запустила свой первый онлайн-магазин»: история Аиши" data-en="'I was 19 when I launched my first online store': Aisha's story">«Мне было 19, когда я запустила свой первый онлайн-магазин»: история Аиши</div>
+      <div class="sp-card-meta" data-ru="1 июня 2026 · 8 мин" data-en="June 1, 2026 · 8 min">1 июня 2026 · 8 мин</div>
+    </a>
+    <a href="#" class="sp-card">
+      <div class="sp-card-cover"><div class="sp-card-cover-ph">◉</div></div>
+      <div class="sp-card-cat" data-ru="Разбор" data-en="Analysis">Разбор</div>
+      <div class="sp-card-title" data-ru="TikTok vs Instagram: где казахстанским брендам выгоднее размещать рекламу" data-en="TikTok vs Instagram: where it's more profitable for Kazakh brands to advertise">TikTok vs Instagram: где казахстанским брендам выгоднее размещать рекламу</div>
+      <div class="sp-card-meta" data-ru="28 мая 2026 · 6 мин" data-en="May 28, 2026 · 6 min">28 мая 2026 · 6 мин</div>
+    </a>
+    <a href="#" class="sp-card">
+      <div class="sp-card-cover"><div class="sp-card-cover-ph">◉</div></div>
+      <div class="sp-card-cat" data-ru="Кейс" data-en="Case">Кейс</div>
+      <div class="sp-card-title" data-ru="Кейс Geely Kazakhstan: как автобренд вышел на молодую аудиторию через UGC" data-en="Geely Kazakhstan case: how a car brand reached young audiences through UGC">Кейс Geely Kazakhstan: как автобренд вышел на молодую аудиторию через UGC</div>
+      <div class="sp-card-meta" data-ru="25 мая 2026 · 7 мин" data-en="May 25, 2026 · 7 min">25 мая 2026 · 7 мин</div>
+    </a>
+  </div>
+
+  <!-- Two-col: features + popular -->
+  <div class="sp-two-col">
+    <div>
+      <div class="sp-section-label" data-ru="Истории и кейсы" data-en="Stories & cases">Истории и кейсы</div>
+
+      <a href="#" class="sp-feature">
+        <div class="sp-feature-cover"><div class="sp-feature-cover-ph">◉</div></div>
+        <div class="sp-feature-body">
+          <div class="sp-feature-cat" data-ru="Колонка" data-en="Column">Колонка</div>
+          <div class="sp-feature-title" data-ru="Почему казахстанским блогерам не нужны 1 миллион подписчиков, чтобы зарабатывать" data-en="Why Kazakh bloggers don't need 1M followers to earn money">Почему казахстанским блогерам не нужны 1 миллион подписчиков, чтобы зарабатывать</div>
+          <div class="sp-feature-excerpt" data-ru="Микроинфлюенсеры с 10–50к аудиторией нередко зарабатывают больше миллионников. Разбираем почему — и как это работает для брендов." data-en="Micro-influencers with 10–50K audiences often earn more than million-follower accounts. We break down why — and how this works for brands.">Микроинфлюенсеры с 10–50к аудиторией нередко зарабатывают больше миллионников. Разбираем почему — и как это работает для брендов.</div>
+          <div class="sp-feature-meta" data-ru="21 мая 2026 · 6 мин" data-en="May 21, 2026 · 6 min">21 мая 2026 · 6 мин</div>
+        </div>
+      </a>
+
+      <a href="#" class="sp-feature">
+        <div class="sp-feature-cover"><div class="sp-feature-cover-ph">◉</div></div>
+        <div class="sp-feature-body">
+          <div class="sp-feature-cat" data-ru="Интервью" data-en="Interview">Интервью</div>
+          <div class="sp-feature-title" data-ru="Создатель самого быстрорастущего EdTech-стартапа Казахстана: «Мы отказали KASE»" data-en="Founder of Kazakhstan's fastest-growing EdTech startup: 'We said no to KASE'">Создатель самого быстрорастущего EdTech-стартапа Казахстана: «Мы отказали KASE»</div>
+          <div class="sp-feature-excerpt" data-ru="Арман Сейткали о том, как построить образовательный сервис с 400k пользователями без венчурных денег и почему они отказались выходить на биржу." data-en="Arman Seitkali on building an educational service with 400K users without VC money and why they declined to go public.">Арман Сейткали о том, как построить образовательный сервис с 400k пользователями без венчурных денег и почему они отказались выходить на биржу.</div>
+          <div class="sp-feature-meta" data-ru="15 мая 2026 · 12 мин" data-en="May 15, 2026 · 12 min">15 мая 2026 · 12 мин</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Popular sidebar -->
+    <div class="sp-popular">
+      <div class="sp-section-label" data-ru="Популярное" data-en="Popular">Популярное</div>
+      <div class="sp-popular-item">
+        <div class="sp-popular-num">1</div>
+        <div>
+          <div class="sp-popular-title" data-ru="Сколько реально зарабатывают казахстанские блогеры в 2026 году" data-en="How much Kazakh bloggers really earn in 2026">Сколько реально зарабатывают казахстанские блогеры в 2026 году</div>
+          <div class="sp-popular-meta" data-ru="24 мая 2026" data-en="May 24, 2026">24 мая 2026</div>
+        </div>
+      </div>
+      <div class="sp-popular-item">
+        <div class="sp-popular-num">2</div>
+        <div>
+          <div class="sp-popular-title" data-ru="«Начинал с нуля, сейчас оборот — 2 млрд тенге»: история основателя Chocofood" data-en="Started from scratch, now 2B tenge: Chocofood founder story">«Начинал с нуля, сейчас оборот — 2 млрд тенге»: история основателя Chocofood</div>
+          <div class="sp-popular-meta" data-ru="3 июня 2026" data-en="June 3, 2026">3 июня 2026</div>
+        </div>
+      </div>
+      <div class="sp-popular-item">
+        <div class="sp-popular-num">3</div>
+        <div>
+          <div class="sp-popular-title" data-ru="TikTok vs Instagram: где казахстанским брендам выгоднее размещать рекламу" data-en="TikTok vs Instagram: where Kazakh brands get better ROI">TikTok vs Instagram: где казахстанским брендам выгоднее размещать рекламу</div>
+          <div class="sp-popular-meta" data-ru="28 мая 2026" data-en="May 28, 2026">28 мая 2026</div>
+        </div>
+      </div>
+      <div class="sp-popular-item">
+        <div class="sp-popular-num">4</div>
+        <div>
+          <div class="sp-popular-title" data-ru="Как казахстанский бьюти-бренд вырос с 3к до 180к подписчиков за 4 месяца" data-en="How a Kazakh beauty brand grew from 3K to 180K followers in 4 months">Как казахстанский бьюти-бренд вырос с 3к до 180к подписчиков за 4 месяца</div>
+          <div class="sp-popular-meta" data-ru="29 мая 2026" data-en="May 29, 2026">29 мая 2026</div>
+        </div>
+      </div>
+      <div class="sp-popular-item">
+        <div class="sp-popular-num">5</div>
+        <div>
+          <div class="sp-popular-title" data-ru="Почему казахстанским блогерам не нужны 1 миллион подписчиков" data-en="Why Kazakh bloggers don't need 1M followers">Почему казахстанским блогерам не нужны 1 миллион подписчиков</div>
+          <div class="sp-popular-meta" data-ru="21 мая 2026" data-en="May 21, 2026">21 мая 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subscribe CTA -->
+  <div class="sp-subscribe">
+    <div class="sp-subscribe-title" data-ru="Следите за нами" data-en="Follow us">Следите за нами</div>
+    <p class="sp-subscribe-sub" data-ru="Свежие материалы о бизнесе, креаторах и медиарынке Казахстана — в вашем Telegram и Instagram." data-en="Fresh stories about business, creators and Kazakhstan's media market — in your Telegram and Instagram.">
+      Свежие материалы о бизнесе, креаторах и медиарынке Казахстана — в вашем Telegram и Instagram.
+    </p>
+    <div class="sp-subscribe-links">
+      <a href="#" class="sp-sub-btn" data-ru="Telegram →" data-en="Telegram →">Telegram →</a>
+      <a href="https://www.instagram.com/sherim.people/" class="sp-sub-btn sp-sub-btn-ghost" target="_blank" rel="noopener" data-ru="Instagram ↗" data-en="Instagram ↗">Instagram ↗</a>
+    </div>
+  </div>
+
+</div><!-- /sp-content -->
+
+<!-- FOOTER -->
+<footer class="sp-footer">
+  <div class="sp-footer-top">
+    <div class="sp-footer-brand">
+      <div class="sp-logo-name">sherim<span>.</span>people</div>
+      <div class="sp-logo-sub" data-ru="медиа о людях и бизнесе" data-en="media about people and business">медиа о людях и бизнесе</div>
+    </div>
+    <p class="sp-footer-about" data-ru="sherim people — это новое медиа о людях, креаторах и актуальных новостях. Мы рассказываем об необычных кейсах в предпринимательстве, делимся историями креаторов и освещаем актуальные новости Казахстана и мира." data-en="sherim people is a new media about people, creators and current news. We cover unusual business cases, share creators' stories and report on the latest news from Kazakhstan and the world.">
+      sherim people — это новое медиа о людях, креаторах и актуальных новостях. Мы рассказываем об необычных кейсах в предпринимательстве, делимся историями креаторов и освещаем актуальные новости Казахстана и мира.
+    </p>
+    <nav class="sp-footer-nav">
+      <a href="#" data-ru="Интервью" data-en="Interviews">Интервью</a>
+      <a href="#" data-ru="Кейсы" data-en="Cases">Кейсы</a>
+      <a href="#" data-ru="Новости" data-en="News">Новости</a>
+      <a href="#" data-ru="Разборы" data-en="Analysis">Разборы</a>
+      <a href="#" data-ru="О нас" data-en="About">О нас</a>
+    </nav>
+  </div>
+  <div class="sp-footer-bottom">
+    <span data-ru="© 2026 sherim people · Алматы, Казахстан" data-en="© 2026 sherim people · Almaty, Kazakhstan">© 2026 sherim people · Алматы, Казахстан</span>
+    <a href="../index.html" data-ru="← Вернуться на sherim media" data-en="← Back to sherim media">← Вернуться на sherim media</a>
+  </div>
+</footer>
+
+<script>
+/* ── Language switcher ── */
+function applyLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('[data-ru],[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val !== null) {
+      if (val.includes('<')) el.innerHTML = val;
+      else el.textContent = val;
+    }
+  });
+  document.querySelectorAll('.sp-lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  try { localStorage.setItem('sherim-lang', lang); } catch(e) {}
+}
+
+document.querySelectorAll('.sp-lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+});
+
+// Sync with saved preference
+const saved = (() => { try { return localStorage.getItem('sherim-lang'); } catch(e) { return null; } })();
+if (saved === 'en') applyLang('en');
+
+/* ── Preloader ── */
+(function() {
+  const preloader = document.getElementById('preloader');
+  if (!preloader) return;
+  const hide = () => setTimeout(() => preloader.classList.add('done'), 1600);
+  if (document.readyState === 'complete') hide();
+  else window.addEventListener('load', hide, { once: true });
+})();
+</script>
+</body>
+</html>
